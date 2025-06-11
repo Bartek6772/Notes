@@ -21,6 +21,7 @@ export function useIndexedNotes() {
             let idx = 0
             const loaded = await Promise.all(
                 notesMeta.map(async ({ title, file }) => {
+                    // console.log("trying to load ")
                     const res = await fetch(`/notes/${file}`);
                     const content = await res.text();
 
