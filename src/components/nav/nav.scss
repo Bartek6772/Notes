@@ -1,0 +1,112 @@
+
+$nav-color: #141414;
+
+nav{
+    background-color: $nav-color;
+    padding: 20px 30px;
+    width: 280px;
+    color: #fff;
+    flex-grow: 0;
+    flex-shrink: 0;
+    transition: all 0.4s ease;
+    position: relative;
+
+    .expand{
+        position: absolute;
+        top: 18px;
+        right: -70px;
+        background-color: $nav-color;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        transform: scale(0);
+        cursor: pointer;
+        z-index: 100;
+
+        svg{
+            transition: all 0.2s ease-in-out;
+        }
+
+        &:hover{
+            svg{
+                transform: scaleY(1.4);
+            }
+        }
+    }
+
+    .header{
+        display: flex;
+        justify-content: space-between;
+        margin: 0 0 35px;
+        align-items: center;
+
+        h2{
+            padding: 0 !important;
+            margin: 0 !important;
+            font-size: 2rem;
+        }
+
+        svg{
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            
+            &:hover{
+                transform:  scale(1.4);
+            }
+        }
+    }
+
+    .links{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &.hidden{
+        margin-left: -280px;
+
+        .expand{
+            transform: scale(1);
+        }
+
+        .close{
+            transform: scale(0);
+        }
+    }
+
+    button{
+        background: none;
+        border: none;
+        cursor: pointer;
+
+        text-decoration: none;
+        color: #fff;
+        padding: 10px 0;
+
+        display: flex;
+        align-items: center;
+
+        svg{
+            margin-right: 20px;
+            transition: all 0.3s ease;
+        }
+
+        &:hover{
+            svg{
+                margin-right: 30px;
+            }
+        }
+    }
+
+    @media(max-width: 800px){
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        background-color: $nav-color;
+        opacity: 1;
+        z-index: 200;
+    }
+}
