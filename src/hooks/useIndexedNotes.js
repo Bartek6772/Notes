@@ -19,19 +19,22 @@ export function useIndexedNotes() {
     useEffect(() => {
         const loadNotes = async () => {
             let idx = 0
-            const loaded = await Promise.all(
-                notesMeta.map(async ({ title, file }) => {
-                    // console.log("trying to load ")
-                    const res = await fetch(`/notes/${file}`);
+            notesMeta.map(async ({ title, file }) => {
+                try {
+                    // const res = await fetch(`/notes/${file}`);
+                    const res = await fetch(`/Notes/notes/${file}`);
                     const content = await res.text();
-
                     const note = { id: idx, title, file, content };
-                    idx++
-                    console.log(note)
                     indexRef.current.add(note);
-                    return note;
-                })
-            );
+                } catch (err) {
+                    console.error("Failed to fetch:", filePath, err);
+                    const note = { id: idx, title, file, content: "" };
+                    indexRef.current.add(note);
+                }
+                
+                idx++
+                return note;
+            })
 
             setNotes(notesMeta);
             setReady(true);

@@ -57,7 +57,8 @@ function App() {
                         <div className="container">
                             <h2>{getTitle(note)}</h2>
                             <hr></hr>
-                            {note != "" && <MarkdownLoader file={"notes/" + note}/>}
+                            {/* {note != "" && <MarkdownLoader file={"/notes/" + note}/>} */}
+                            {note != "" && <MarkdownLoader file={"/Notes/notes/" + note}/>}
                         </div>
                     </div>
                 </div>
